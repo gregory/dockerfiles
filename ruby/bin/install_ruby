@@ -1,0 +1,16 @@
+#!/bin/sh
+set -xe
+
+bnl-apk-install-download-deps \
+    && bnl-apk-install-build-deps \
+    && apk-install-ruby-deps \
+    && ruby-install ruby $RUBY_VERSION --system \
+                                       --jobs=$(grep processor /proc/cpuinfo | tail -n1 | awk -F: '{ print $2 + 1 }') \
+                                       -- --disable-install-rdoc  \
+                                          --disable-install-doc \
+                                          --disable-install-capi \
+                                          --enable-shared \
+    && apk del download-deps build-deps ruby-deps \
+    && rm -rf /tmp/* \
+    && rm -r /usr/local/src/ruby-${RUBY_VERSION}* \
+    && rm -rf /var/cache/apk/*

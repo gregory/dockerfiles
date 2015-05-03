@@ -1,0 +1,6 @@
+#!/bin/sh
+set -xe
+
+# Find additional dependencies at the url of the repositories.
+# You'll find those by running: `docker run -it --rm metakungfu/base sh -c 'cat /etc/apk/repositories'`
+
