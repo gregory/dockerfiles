@@ -1,0 +1,2 @@
+dnsmasq: /usr/sbin/dnsmasq -k -u root --addn-hosts=/etc/dnsmasq.conf
+dockergen: docker-gen -watch -notify "killall -HUP dnsmasq || true" /etc/dnsmasq.tmpl /etc/dnsmasq.conf
